@@ -1,8 +1,12 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom/client';
+
+import Timer from './timer'
 
 function render() {
-  ReactDOM.render(<h2>Hello from React!</h2>, document.body);
+  const root = ReactDOM.createRoot(document.getElementById("app"))
+
+  root.render(<Timer/>)
 }
 
 render();
