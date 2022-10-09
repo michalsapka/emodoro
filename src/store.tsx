@@ -6,7 +6,7 @@ export const STARTED_STATE = "started"
 export const STOPPED_STATE = "stopped"
 
 type TimerState = {
-  state: STARTED_STATE | STOPPED_STATE
+  state: typeof STARTED_STATE | typeof STOPPED_STATE
 }
 
 const defaultTimerState : TimerState = {
