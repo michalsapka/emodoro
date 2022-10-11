@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppSelector, useAppDispatch } from './store'
-import {start, stop, STARTED_STATE} from './store'
+import {start, stop, STARTED_STATE} from './timer_slice'
 
 
 function StoppedButtons(): JSX.Element {

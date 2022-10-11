@@ -5,7 +5,7 @@ export type PomodoroType = {
 
 export type PomodoroInputType = {
   startTime?: Date,
-  length: number
+  length?: number
 }
 const generatePomorodo = (params : PomodoroInputType) : PomodoroType => {
   return {

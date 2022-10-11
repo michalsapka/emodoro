@@ -3,7 +3,7 @@ import generatePomorodo from './pomodoro'
 import type {PomodoroType} from './pomodoro'
 import {useEffect, useState} from 'react'
 import { useAppSelector, useAppDispatch } from './store'
-import {start, stop, STARTED_STATE} from './store'
+import {start, stop, STARTED_STATE} from './timer_slice'
 
 type TimerDisplay = {
   secondsElapesed: number
