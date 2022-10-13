@@ -5,6 +5,7 @@ import {useEffect, useState} from 'react'
 import { useAppSelector, useAppDispatch } from '../state/store'
 import {start, stop, STARTED_STATE} from '../state/timerSlice'
 
+
 type TimerDisplay = {
   secondsElapesed: number
 }
