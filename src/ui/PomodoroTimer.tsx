@@ -1,9 +1,9 @@
 import React from 'react'
-import generatePomorodo from './pomodoro'
-import type {PomodoroType} from './pomodoro'
+import generatePomorodo from '../data/pomodoro'
+import type {PomodoroType} from '../data/pomodoro'
 import {useEffect, useState} from 'react'
-import { useAppSelector, useAppDispatch } from './store'
-import {start, stop, STARTED_STATE} from './timer_slice'
+import { useAppSelector, useAppDispatch } from '../state/store'
+import {start, stop, STARTED_STATE} from '../state/timerSlice'
 
 type TimerDisplay = {
   secondsElapesed: number

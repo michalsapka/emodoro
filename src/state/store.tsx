@@ -1,6 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
-import timerSlice from './timer_slice'
+import timerSlice from './timerSlice'
 
 
 const store = configureStore({
