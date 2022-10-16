@@ -1,0 +1,15 @@
+name: Release
+run-name: ${{ github.actor }} is releasing a new version
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: semver
+        uses: grumpy-programmer/conventional-commits-semver-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # token is mandatory to create the release
