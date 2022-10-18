@@ -1,18 +1,29 @@
 export type PomodoroType = {
-  startTime: Date,
-  length: number
+  startTime: string,
+  length: number,
+  elapsed: number
 }
 
 export type PomodoroInputType = {
-  startTime?: Date,
+  startTime?: string,
   length?: number
-}
-const generatePomorodo = (params : PomodoroInputType) : PomodoroType => {
-  return {
-    startTime: params.startTime || new Date(),
-    length: params.length
-  }
-  
+  elapsed?: number
 }
 
-export default generatePomorodo
+const emptyPomodoro : PomodoroType = {
+  startTime: String(new Date()),
+  length: 60 * 25,
+  elapsed: 0, 
+}
+
+const buildPomodoro = (params : PomodoroInputType) : PomodoroType => {
+  return {
+    startTime: params.startTime || emptyPomodoro.startTime,
+    length: params.length || emptyPomodoro.length,
+    elapsed: params.elapsed || emptyPomodoro.elapsed,
+  }
+}
+
+
+export default buildPomodoro
+export {emptyPomodoro}
