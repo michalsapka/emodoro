@@ -1,7 +1,7 @@
 {
   "name": "emodoro",
   "productName": "emodoro",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A pomodoro timer",
   "main": ".webpack/main",
   "scripts": {
