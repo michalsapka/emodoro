@@ -1,54 +1,38 @@
 import React from 'react'
-import generatePomorodo from '../data/pomodoro'
-import type {PomodoroType} from '../data/pomodoro'
-import {useEffect, useState} from 'react'
-import { useAppSelector, useAppDispatch } from '../state/store'
-import {start, stop, STARTED_STATE} from '../state/timerSlice'
-
+import {useEffect} from 'react'
+import { useAppSelector } from '../state/store'
+import { STOPPED_STATE} from '../state/timerSlice'
 
 type TimerDisplay = {
-  secondsElapesed: number
+  secondsElapsed: number
 }
-const TimerDisplay = ({secondsElapesed} : TimerDisplay) => {
-  const minutes = (Math.floor(secondsElapesed / 60)).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
-  const seconds = (secondsElapesed % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+const TimerDisplay = ({secondsElapsed} : TimerDisplay) => {
+  const minutes = (Math.floor(secondsElapsed / 60)).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+  const seconds = (secondsElapsed % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
   return <>{minutes}:{seconds}</>
 }
 
-const calculateElapsed = (startTime : Date) : number => {
-  return Math.ceil((new Date().getTime() - startTime.getTime())/60/60)
-}
-
-export type ActivePomodoroType = {
-  pomodoro: PomodoroType
-}
-const ActivePomodoro = ({pomodoro} : ActivePomodoroType) => {
-  const {startTime} =  pomodoro
-  const [elapsed, setElapsed] = useState(calculateElapsed(startTime))
-
+const ActivePomodoro = () => {
+  const currentPomodoro = useAppSelector(state => state.currentPomodoro)
   useEffect(() => {
-    const timer = setInterval(() => {
-      setElapsed(calculateElapsed(startTime));
-    }, 1000);
-
+    const timer = setInterval(() => { }, 1000);
     return () => clearTimeout(timer);
   });
 
-
-  return <TimerDisplay secondsElapesed={elapsed}/>
+  return <TimerDisplay secondsElapsed={currentPomodoro.currentPomodoro.elapsed}/>
 }
 
-const InactivePomodoro  = () => <TimerDisplay secondsElapesed={0}/>
+const InactivePomodoro  = () => <TimerDisplay secondsElapsed={0}/>
 
 const PomorodoTimer = () => {
-
   const timerState = useAppSelector(state => state.timer.state)
-  if(timerState === STARTED_STATE) {
-    const pomodoro = generatePomorodo({length: 25})
-    return <ActivePomodoro pomodoro={pomodoro}/> 
+  if(timerState !== STOPPED_STATE) {
+    return <ActivePomodoro/> 
   }
 
   return <InactivePomodoro/>
 }
 
 export default PomorodoTimer
+
+
