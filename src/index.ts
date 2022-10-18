@@ -56,4 +56,4 @@ require('update-electron-app')({
   repo: 'michalsapka/emodoro',
   updateInterval: '1 hour',
   logger: require('electron-log')
-}
+})
