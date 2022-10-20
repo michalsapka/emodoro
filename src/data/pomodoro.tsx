@@ -17,6 +17,7 @@ const emptyPomodoro : PomodoroType = {
 }
 
 const buildPomodoro = (params : PomodoroInputType) : PomodoroType => {
+  console.log(params)
   return {
     startTime: params.startTime || emptyPomodoro.startTime,
     length: params.length || emptyPomodoro.length,
