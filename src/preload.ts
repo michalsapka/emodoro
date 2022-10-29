@@ -1,9 +1,8 @@
 import { contextBridge, ipcRenderer } from "electron"
+import type PomodoroType from './data/pomodoro'
 
 contextBridge.exposeInMainWorld("database", {
-    query: function (query : any) {
-        ipcRenderer.send("SendToDB", {
-            query
-        });
+    appendPomodoro: function (pomodoro : typeof PomodoroType) {
+      ipcRenderer.send("SendToDB", pomodoro)
     },
 });
