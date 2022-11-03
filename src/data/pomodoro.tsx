@@ -17,7 +17,6 @@ const emptyPomodoro : PomodoroType = {
 }
 
 const buildPomodoro = (params : PomodoroInputType) : PomodoroType => {
-  console.log(params)
   return {
     startTime: params.startTime || emptyPomodoro.startTime,
     length: params.length || emptyPomodoro.length,
@@ -25,6 +24,9 @@ const buildPomodoro = (params : PomodoroInputType) : PomodoroType => {
   }
 }
 
+const persistNewPmodoro = (pomodoro: PomodoroType) => {
+  window.database.appendPomodoro(pomodoro)
+}
 
 export default buildPomodoro
-export {emptyPomodoro}
+export {emptyPomodoro, persistNewPmodoro}
