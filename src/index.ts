@@ -34,7 +34,7 @@ const createWindow = (): void => {
   mainWindow.webContents.openDevTools();
 
   ipcMain.on('SendToDB', async (_, pomodoro : typeof PomodoroType) => {
-    const pomodoros : typeof PomodoroType[] = STORE.get('pomodoros')
+    const pomodoros : typeof PomodoroType[] = STORE.get('pomodoros') as typeof PomodoroType[]
     const newPomodoros : typeof PomodoroType[]  = [...(pomodoros || []), pomodoro]
     STORE.set('pomodoros', newPomodoros)
     

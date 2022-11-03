@@ -1,11 +1,12 @@
 import React from 'react'
-import { useAppSelector, useAppDispatch } from '../state/store'
+import { useAppSelector } from '../state/store'
 import {STOPPED_STATE} from '../state/timerSlice'
 
 const CurrentPomodoroPersistor = () => {
   const timerState = useAppSelector(state => state.timer.state)
   const currentPomodoro = useAppSelector(state => state.currentPomodoro.currentPomodoro)
 
+    debugger
   if(timerState === STOPPED_STATE && currentPomodoro.elapsed > 0) {
     window.database.appendPomodoro(currentPomodoro)
   }
