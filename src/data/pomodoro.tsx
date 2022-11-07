@@ -24,6 +24,7 @@ const buildPomodoro = (params : PomodoroInputType) : PomodoroType => {
   }
 }
 
+
 const persistNewPmodoro = (pomodoro: PomodoroType) => {
   window.database.appendPomodoro(pomodoro)
 }

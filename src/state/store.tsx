@@ -2,12 +2,14 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import timerSlice from './timerSlice'
 import currentPomodoro from './currentPomodoroSlice'
+import defaultLength from './defaultLengthSlice'
 
 
 const store = configureStore({
   reducer: {
     timer: timerSlice.reducer,
-    currentPomodoro: currentPomodoro.reducer
+    currentPomodoro: currentPomodoro.reducer,
+    defaultLength: defaultLength.reducer
   }
 })
 export default store

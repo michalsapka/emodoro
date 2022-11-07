@@ -24,22 +24,28 @@ const createWindow = (): void => {
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: true,
+      contextIsolation: true
     },
   });
+
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools()
+
+  ipcMain.on('FetchDefaultPomodoroLength', async (_,) => {
+    const defaultPomodoroLength = STORE.get('defaultLength')
+    mainWindow.webContents.send('set-default-pomodoro-length', defaultPomodoroLength)
+  });
 
   ipcMain.on('SendToDB', async (_, pomodoro : typeof PomodoroType) => {
     const pomodoros : typeof PomodoroType[] = STORE.get('pomodoros') as typeof PomodoroType[]
     const newPomodoros : typeof PomodoroType[]  = [...(pomodoros || []), pomodoro]
     STORE.set('pomodoros', newPomodoros)
-    
-    console.log(newPomodoros)
-  }); 
+    STORE.set('defaultLength', pomodoro.length)
+  });
 };
 
 // This method will be called when Electron has finished
